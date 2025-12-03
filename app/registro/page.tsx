@@ -6,18 +6,20 @@ import { redirect } from "next/navigation";
 import { useState } from "react";
 import { Spinner } from "@/components/ui/spinner";
 
-export default function LoginForm() {
+export default function RegisterForm() {
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
 
-  function handleLogin(event: React.FormEvent<HTMLFormElement>) {
+  function handleRegister(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
+    const name = formData.get("name") as string;
     const email = formData.get("email") as string;
     const senha = formData.get("senha") as string;
 
-    authClient.signIn.email({
+    authClient.signUp.email({
+      name: name,
       email: email,
       password: senha
     },
@@ -30,11 +32,12 @@ export default function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleLogin}>
+    <form onSubmit={handleRegister}>
+      <Input name="name" placeholder="Nome" />
       <Input name="email" placeholder="Email" type="email" />
       <Input name="senha" placeholder="Senha" type="password" />
       <Button disabled={loading}>
-        {loading ? <Spinner /> : "Entrar"}
+        {loading ? <Spinner /> : "Registrar"}
       </Button>
       {error && <p className="text-red-500">{error}</p>}
     </form>
