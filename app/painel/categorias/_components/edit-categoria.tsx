@@ -12,7 +12,6 @@ import {
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Edit } from 'lucide-react'
 import { useState, useTransition } from 'react'
 import { editarCategoria } from '../actions'
 import { toast } from 'sonner'
@@ -44,15 +43,13 @@ export default function EditCategoria({ categoria }: EditCategoriaProps) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm">
-          <Edit className="h-4 w-4" />
-        </Button>
+        <Button variant="outline" size="sm">Editar</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Editar Categoria</DialogTitle>
           <DialogDescription>
-            Altere o nome da categoria.
+            Atualize o nome da categoria.
           </DialogDescription>
         </DialogHeader>
         <form action={handleSubmit}>
@@ -79,7 +76,7 @@ export default function EditCategoria({ categoria }: EditCategoriaProps) {
               Cancelar
             </Button>
             <Button type="submit" disabled={isPending}>
-              {isPending ? 'Salvando...' : 'Salvar Alterações'}
+              {isPending ? 'Atualizando...' : 'Atualizar Categoria'}
             </Button>
           </DialogFooter>
         </form>
