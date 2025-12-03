@@ -19,3 +19,8 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Categorias {
+  id String @id @default(uuid())
+  nome String
+}
